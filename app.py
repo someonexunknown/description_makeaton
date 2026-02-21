@@ -38,7 +38,6 @@ def generate_description(item, location, occasion):
     f"Location: {location.strip()}\n"
     f"Occasion: {occasion.strip()}"
 )
-    )
     try:
         response = client.models.generate_content(
             model="gemma-3-1b-it",
