@@ -14,15 +14,21 @@ client = genai.Client(api_key=GEMINI_API_KEY)
 def generate_description(item, location, occasion):
     """Generates a social media post description for a trending product."""
     prompt = (
-        "Act as a Social Media Marketing Expert. "
-        "Write a short, engaging social media post for a local store owner to promote a trending product. "
-        "The post should feel authentic, locally relevant, and drive customer action like DM to order or visit the store.\n"
+        "Act as a Social Media Marketing Expert with deep knowledge of local culture, trends, and consumer behaviour. "
+        "Before writing, silently research and think about: what this product actually is, what kind of people buy it, "
+        "why it is trending in this region, how it connects to the occasion, and what local slang or cultural nuances "
+        "make the post feel genuinely native to that place — not just a tourist's description of it.\n\n"
+        "Then write a short, punchy, energetic social media post for a local store owner promoting this product. "
+        "The post must sound like it was written by a real local business owner who knows their community — "
+        "not like a template with variables filled in. "
+        "Never mention the location code or paste input values directly. "
+        "Translate the context into natural human language.\n\n"
         "CRITICAL RULES:\n"
         "1. Keep it under 50 words.\n"
-        "2. Include 1-2 relevant emojis.\n"
-        "3. End with 3-4 relevant hashtags.\n"
-        "4. Make it feel local and specific to the given location.\n"
-        "5. Tie the product to the occasion naturally.\n"
+        "2. Include 1-2 relevant emojis that fit the vibe naturally.\n"
+        "3. End with 3-4 relevant hashtags that feel organic, not generic.\n"
+        "4. Never paste the location code (like IN-KL) — instead reflect the culture naturally.\n"
+        "5. Sound energetic, real, and locally rooted.\n"
         "6. Return ONLY the post text, no extra explanation or formatting.\n\n"
         f"Product: {item.strip()}\n"
         f"Location: {location.strip()}\n"
@@ -30,7 +36,7 @@ def generate_description(item, location, occasion):
     )
     try:
         response = client.models.generate_content(
-            model="gemma-3-4b-it",
+            model="gemma-3-1b-it",
             contents=prompt,
             config={"temperature": 0.7, "max_output_tokens": 150}
         )
