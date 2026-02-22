@@ -13,21 +13,21 @@ client = genai.Client(api_key=GEMINI_API_KEY)
 
 def generate_description(item, location, occasion):
     """Generates a social media post description for a trending product."""
-   prompt = (
-    "Write a social media post for a local store owner selling this product. "
-    "The post must sound human, grounded, and natural — not like AI wrote it. "
-    "Understand what the product is, who buys it, and why it matters to them before writing. "
-    "STRICT RULES: "
-    "1. 1-3 sentences max. Casual but credible tone. "
-    "2. 1-2 emojis that feel natural to the product, not forced. "
-    "3. End with 3-4 hashtags that echo the words and feeling of the post. "
-    "4. Use the real location name naturally in the post or hashtag if it adds value — never paste location codes. "
-    "5. Stick strictly to the product — no invented food, places, weather, or lifestyle references. "
-    "6. Output only the post. No intro, no explanation, no quotes around it. "
-    f"Product: {item.strip()} "
-    f"Location: {location.strip()} "
-    f"Occasion: {occasion.strip()}"
-)
+    prompt = (
+        "Write a social media post for a local store owner selling this product. "
+        "The post must sound human, grounded, and natural — not like AI wrote it. "
+        "Understand what the product is, who buys it, and why it matters to them before writing. "
+        "STRICT RULES: "
+        "1. 1-3 sentences max. Casual but credible tone. "
+        "2. 1-2 emojis that feel natural to the product, not forced. "
+        "3. End with 3-4 hashtags that echo the words and feeling of the post. "
+        "4. Use the real location name naturally in the post or hashtag if it adds value — never paste location codes. "
+        "5. Stick strictly to the product — no invented food, places, weather, or lifestyle references. "
+        "6. Output only the post. No intro, no explanation, no quotes around it. "
+        f"Product: {item.strip()} "
+        f"Location: {location.strip()} "
+        f"Occasion: {occasion.strip()}"
+    )
     try:
         response = client.models.generate_content(
             model="gemma-3-1b-it",
