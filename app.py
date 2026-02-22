@@ -29,7 +29,7 @@ def generate_description(item, location, occasion):
     )
     try:
         response = client.models.generate_content(
-            model="gemma-3-1b-it",
+            model="gemma-3-27b-it",
             contents=prompt,
             config={"temperature": 0.7, "max_output_tokens": 150}
         )
